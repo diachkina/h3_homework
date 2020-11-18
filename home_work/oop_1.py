@@ -1,4 +1,4 @@
-'''У вас есть список(list) IP адрессов. Вам необходимо создать
+"""У вас есть список(list) IP адрессов. Вам необходимо создать
 класс который сможет:
 1) Получить и изменить список IP адресов
 2) Получить список IP адресов в развернутом виде
@@ -7,57 +7,64 @@
 (10.11.12.13 -> 11.12.13)
 4) Получить список последних октетов IP адресов
 (10.11.12.13 -> 13) ''
-'''
+"""
 
 
 class IpHandler:
-    "" "Обрабатывает список IP-адресов, каждый IP-адрес должен быть строкой" ""
+    """Обрабатывает список IP-адресов, каждый IP-адрес должен быть строкой"""
     def __init__(self, ip_list):
         self.ip_list = ip_list
 
     @property
     def ip_list(self):
-        return self.ip_list
+        return self._ip_list
 
     @ip_list.setter
     def ip_list(self, new_list):
-        self.new_list = new_list
+        for ip in new_list:
+            if not isinstance(ip, str):
+                raise TypeError('IP-address must be in <class str>')
+        self._ip_list = new_list
 
+    def reverse_IP(self):
+        """Вернуть обратный IP-адрес"""
+        reversed_list = list(map(lambda ip: '.'.join(reversed(ip.split('.'))), self.ip_list))
+        return reversed_list
 
-    def reverse_IP(self, ip_list, new_list):
-        "" "Вернуть обратный IP-адрес"
-        self.reverse_IP = new_list
-        new_list = list(map(lambda ip: '.'.join(reversed(ip.split('.'))), ip_list))
-        return new_list
-
-
-    def get_oct_1_3(self, ip_list):
-        "Возвращает список IP-адресов без первых октетов (127.0.0.1 -> .0.0.1)"
+    def get_oct_1_3(self):
+        """Возвращает список IP-адресов без первых октетов (127.0.0.1 -> .0.0.1)"""
         ip_list_1_3oct = []
-        for ip in ip_list:
+        for ip in self.ip_list:
             ip_list_1_3oct.append(ip.split('.'))
         for a in ip_list_1_3oct:
             a.pop(0)
         ip_list_1_3oct = list(map(lambda p: '.'.join(p), ip_list_1_3oct))
         return ip_list_1_3oct
 
-
-    def get_oct_3(self, ip_list):
-        "Возвращает список последних октетов каждого IP-адреса (127.0.0.1 -> .1)"
+    def get_oct_3(self):
+        """Возвращает список последних октетов каждого IP-адреса (127.0.0.1 -> .1)"""
         ip_list_3oct = []
-        for ip in ip_list:
+        for ip in self.ip_list:
             ip_list_3oct.append(ip.split('.')[-1])
         return ip_list_3oct
 
 
-'''Создайте класс который будет хранить параметры для
+add = IpHandler(['10.11.12.13', '20.21.22.23', '30.31.32.33', '40.41.42.43'])
+print(add.reverse_IP())
+print(add.get_oct_1_3())
+print(add.get_oct_3())
+
+
+"""Создайте класс который будет хранить параметры для
 подключения к физическому юниту (например сервер). В своем
 списке атрибутов он должен иметь минимальный набор
 (unit_name, mac_address, ip_address, login, password).
 Вы должны описать каждый из этих атрибутов в виде гетеров и
 сеттеров (@property). У вас должна быть возможность
-получения и назначения этих атрибутов в классе.'''
-
+получения и назначения этих атрибутов в классе."""
+print()
+print()
+print()
 
 class ConnHandler:
     __slots__ = ['_unit_name', '_mac_address', '_ip_address', '_login', '_password']
@@ -68,3 +75,74 @@ class ConnHandler:
         self._ip_address = ip_address
         self._login = login
         self._password = password
+
+    @property
+    def unit_name(self):
+        return self._unit_name
+
+    @unit_name.setter
+    def unit_name(self, name):
+        print('unit')
+        if name.isdigit():
+            print('Please use only letters')
+        self._unit_name = name
+
+
+    @property
+    def mac_address(self):
+        return self._mac_address
+
+    @mac_address.setter
+    def mac_address(self, address):
+        print('mac')
+        if len(address) != 12:
+            print('Please enter a right address')
+        self._unit_name = address
+
+
+    @property
+    def ip_address(self):
+        return self._ip_address
+
+    @ip_address.setter
+    def ip_address(self, ip):
+        print('ip')
+        if ip.isalpha():
+            print('Wrong IP-address')
+        self._ip_address = ip
+
+
+    @property
+    def login(self):
+        return self._login
+
+    @login.setter
+    def login(self, logname):
+        print('login')
+        if logname.isdigit():
+            print('Please use letters too')
+        elif len(logname) < 6:
+            print('Your login is too short')
+        self._login = logname
+
+
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, key):
+        print('passw')
+        self._password = key
+
+
+q = ConnHandler('00', '11', '577', '63', '2552')
+print(q.unit_name)
+print(q.mac_address)
+print(q.ip_address)
+print(q.login)
+print(q.password)
+
+# w = ConnHandler(mac_address='123')
+print()
+# unit_name='', mac_address='', ip_address='', login='', password='')
