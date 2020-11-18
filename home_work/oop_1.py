@@ -6,33 +6,48 @@
 3) Получить список IP адресов без первых октетов
 (10.11.12.13 -> 11.12.13)
 4) Получить список последних октетов IP адресов
-(10.11.12.13 -> 13)'''
+(10.11.12.13 -> 13) ''
+'''
 
 
 class IpHandler:
-    """Handles a list of IPs, each IP must be a string"""
-    def __init__(self, ipList):
-        pass
+    "" "Обрабатывает список IP-адресов, каждый IP-адрес должен быть строкой" ""
+    def __init__(self, ip_list):
+        self.ip_list = ip_list
 
     @property
-    def ipList(self):
-        pass
+    def ip_list(self):
+        return self.ip_list
 
-    @ipList.setter
-    def ipList(self, newList):
-        pass
+    @ip_list.setter
+    def ip_list(self, new_list):
+        self.new_list = new_list
 
-    def reverse_IP(self):
-        """Return it's IPs reversed"""
-        pass
 
-    def get_oct_1_3(self):
-        """Returns a list of IPs without first octets (127.0.0.1 -> .0.0.1)"""
-        pass
+    def reverse_IP(self, ip_list, new_list):
+        "" "Вернуть обратный IP-адрес"
+        self.reverse_IP = new_list
+        new_list = list(map(lambda ip: '.'.join(reversed(ip.split('.'))), ip_list))
+        return new_list
 
-    def get_oct_3(self):
-        """Returns a list of last octets of each IP (127.0.0.1 -> .1)"""
 
+    def get_oct_1_3(self, ip_list):
+        "Возвращает список IP-адресов без первых октетов (127.0.0.1 -> .0.0.1)"
+        ip_list_1_3oct = []
+        for ip in ip_list:
+            ip_list_1_3oct.append(ip.split('.'))
+        for a in ip_list_1_3oct:
+            a.pop(0)
+        ip_list_1_3oct = list(map(lambda p: '.'.join(p), ip_list_1_3oct))
+        return ip_list_1_3oct
+
+
+    def get_oct_3(self, ip_list):
+        "Возвращает список последних октетов каждого IP-адреса (127.0.0.1 -> .1)"
+        ip_list_3oct = []
+        for ip in ip_list:
+            ip_list_3oct.append(ip.split('.')[-1])
+        return ip_list_3oct
 
 
 '''Создайте класс который будет хранить параметры для
