@@ -82,10 +82,10 @@ class ConnHandler:
 
     @unit_name.setter
     def unit_name(self, name):
-        if name.isdigit():
+        if not name.isdigit():
+            self._unit_name = name
+        else:
             print('Please use only letters')
-        self._unit_name = name
-
 
     @property
     def mac_address(self):
@@ -93,10 +93,10 @@ class ConnHandler:
 
     @mac_address.setter
     def mac_address(self, address):
-        if len(address) != 12:
+        if not len(address) != 12:
+            self._unit_name = address
+        else:
             print('Please enter a right address')
-        self._unit_name = address
-
 
     @property
     def ip_address(self):
@@ -104,10 +104,10 @@ class ConnHandler:
 
     @ip_address.setter
     def ip_address(self, ip):
-        if ip.isalpha():
+        if not ip.isalpha():
+            self._ip_address = ip
+        else:
             print('Wrong IP-address')
-        self._ip_address = ip
-
 
     @property
     def login(self):
@@ -115,12 +115,10 @@ class ConnHandler:
 
     @login.setter
     def login(self, logname):
-        if logname.isdigit():
-            print('Please use letters too')
-        elif len(logname) < 6:
+        if not len(logname) < 8:
+            self._login = logname
+        else:
             print('Your login is too short')
-        self._login = logname
-
 
     @property
     def password(self):
@@ -128,10 +126,14 @@ class ConnHandler:
 
     @password.setter
     def password(self, key):
-        self._password = key
+        if not len(key) < 6:
+            self._password = key
+        else:
+            print('Your password is too short')
 
 
-q = ConnHandler('123', '11')
+q = ConnHandler()
+q.unit_name = '456789'
 print(q.unit_name)
 print(q.mac_address)
 print(q.ip_address)
