@@ -29,7 +29,7 @@ class Administrator(User):
         return order
 
     def check_review(self, review):
-        if not review.mark >= 4:
+        if review.mark >= 4:
             review.status = "Published"
             return review
         review.status = "Moderation"
