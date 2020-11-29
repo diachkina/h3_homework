@@ -1,9 +1,9 @@
-from customer import Customer
-from supplier import Supplier
-from item import Item
+from orm2.customer import Customer
+from orm2.supplier import Supplier
+from orm2.item import Item
 # from supply import Supply
 # from order import Order
-from admin import Administrator
+from orm2.admin import Administrator
 
 supply = list()
 orders = list()

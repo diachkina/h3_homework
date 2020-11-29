@@ -1,8 +1,6 @@
-import uuid
-
-from user import User
-from item import Item
-from supply import Supply
+from orm2.user import User
+from orm2.item import Item
+from orm2.supply import Supply
 
 
 class Supplier(User):

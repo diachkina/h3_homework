@@ -15,7 +15,7 @@ class Review:
 
 
 if __name__ == '__main__':
-    from customer import Customer
+    from orm2.customer import Customer
 
     c1 = Customer("iamguido", "4sure", "Guido", "Van Rossum", "000-112-35-8", "guido@python.org", "09-09-1968")
     r1 = Review('Guido', 'Bananas are yummy', 5)

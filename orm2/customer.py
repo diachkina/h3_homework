@@ -1,7 +1,7 @@
 # import uuid
 
-from user import User
-from order import Order
+from orm2.user import User
+from orm2.order import Order
 # from review import Review
 
 
@@ -32,8 +32,8 @@ class Customer(User):
 
 
 if __name__ == '__main__':
-    from item import Item
-    from review import Review
+    from orm2.item import Item
+    from orm2.review import Review
 
     c1 = Customer("iamguido", "4sure", "Guido", "Van Rossum", "000-112-35-8", "guido@python.org", "09-09-1968")
     i1 = Item("Banana", "Better than ever before", 799.0, ("Golden", "Fresh Green"))

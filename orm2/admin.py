@@ -1,5 +1,5 @@
 # import uuid
-from user import User
+from orm2.user import User
 
 
 class Administrator(User):
