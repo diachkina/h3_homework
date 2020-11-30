@@ -1,6 +1,7 @@
 import uuid
 import logging
 
+
 class Item:
     def __init__(self, title, description, price, colors=("Black", )):
         self.id = uuid.uuid4()
