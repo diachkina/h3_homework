@@ -1,5 +1,5 @@
 import uuid
-
+import logging
 
 class Supply:
     def __init__(self, item, supplier, amount):

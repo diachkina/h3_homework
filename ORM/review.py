@@ -1,5 +1,5 @@
 import uuid
-
+import logging
 
 class Review:
     def __init__(self, customer, text, mark):

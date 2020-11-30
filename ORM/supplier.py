@@ -1,5 +1,5 @@
 import uuid
-
+import logging
 from user import User
 from item import Item
 from supply import Supply
