@@ -3,9 +3,9 @@ import logging
 logger = logging.getLogger('my_logger')
 logger.setLevel(logging.INFO)
 
-formatter = logging.Formatter('%(levelname)s: %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-fh = logging.FileHandler('advanced_log.log')
+fh = logging.FileHandler('orm.log')
 fh.setLevel(logging.ERROR)
 fh.setFormatter(formatter)
 

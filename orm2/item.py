@@ -1,5 +1,5 @@
 import uuid
-import logging
+from simple_logger import logger
 
 
 class Item:
@@ -9,6 +9,8 @@ class Item:
         self.description = description
         self.price = float(price)
         self.colors = colors
+        self.log = logger
+        self.log.info(f'Item is ready')
 
     def __str__(self):
         return f"Item {self.id}: {self.title}, ${self.price}"

@@ -1,5 +1,5 @@
 import uuid
-
+from simple_logger import logger
 
 class User:
     def __init__(self, username, userpass, email):
@@ -7,6 +7,8 @@ class User:
         self._username = username
         self._userpass = userpass
         self.email = email
+        self.log = logger
+        self.log.info(f'User ok')
 
     @property
     def username(self):
@@ -15,3 +17,6 @@ class User:
     @property
     def userpass(self):
         return '*' * len(self._userpass)
+
+
+user1 = User("qwerty", "12345", "qwewqe@qew.q")

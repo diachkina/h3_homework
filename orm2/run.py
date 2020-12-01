@@ -1,15 +1,15 @@
 from customer import Customer
 from supplier import Supplier
 from item import Item
-# from supply import Supply
-# from order import Order
+from review import Review
+from order import Order
 
 from admin import Administrator
-import logging
 
 supply = list()
 orders = list()
 items = list()
+review = list()
 
 admin1 = Administrator("iamgod", "iamthelaw", "memyself@heavens.com")
 supplier1 = Supplier("isupply", "4real", "Crab Shack Company", "Van Crabs", "000-112-35-8", "crab@shack.biz")
@@ -19,15 +19,19 @@ item1 = Item("Banana", "Better than ever before", 799.0,
             ("Golden", "Fresh Green"))
 item2 = Item("Best Banana", "Better than others", 899.0,
             ("Truly Golden", "Fresher Green"))
+review1 = Review('Guido', 'Bananas are yummy', 5)
 
 supply.append(supplier1.add_supply(item1, 10))
 supply.append(supplier2.add_supply(item2, 3))
 
 customer1.create_order(item2, 5)
-print(customer1.orders[0].status)
+# customer1.create_review(customer1, review1)
+# print(customer1.orders[0].status)
 
 admin1.update_supply([supplier1, supplier2])
 admin1.update_orders([customer1])
 
 admin1.check_order(customer1.orders[0])
-print(customer1.orders[0].status)
+# admin1.check_review()
+# print(customer1.orders[0].status)
+
